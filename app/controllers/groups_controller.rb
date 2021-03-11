@@ -25,18 +25,7 @@ class GroupsController < ApplicationController
   end
 
   # PATCH/PUT /groups/1
-  def update
-    if @group.update(group_params)
-      render json: @group
-    else
-      render json: @group.errors, status: :unprocessable_entity
-    end
-  end
 
-  # DELETE /groups/1
-  def destroy
-    @group.destroy
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
