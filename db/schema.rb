@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_151103) do
+ActiveRecord::Schema.define(version: 2021_03_11_155927) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -39,6 +39,19 @@ ActiveRecord::Schema.define(version: 2021_03_11_151103) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "sessions", force: :cascade do |t|
+    t.string "name"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string "location"
+    t.integer "group_id", null: false
+    t.integer "users_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_sessions_on_group_id"
+    t.index ["users_id"], name: "index_sessions_on_users_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -52,4 +65,6 @@ ActiveRecord::Schema.define(version: 2021_03_11_151103) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "sessions", "groups"
+  add_foreign_key "sessions", "users", column: "users_id"
 end
