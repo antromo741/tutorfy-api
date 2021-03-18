@@ -10,7 +10,7 @@ class GroupsController < ApplicationController
 
   # GET /groups/1
   def show
-    render json: @group
+    render json: GroupSerializer.new(@group, include: [:sessions])
   end
 
   # POST /groups

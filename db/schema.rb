@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_18_182524) do
+ActiveRecord::Schema.define(version: 2021_03_18_193604) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -45,12 +45,12 @@ ActiveRecord::Schema.define(version: 2021_03_18_182524) do
     t.datetime "end_time"
     t.string "location"
     t.integer "group_id", null: false
-    t.integer "users_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "description"
     t.index ["group_id"], name: "index_sessions_on_group_id"
-    t.index ["users_id"], name: "index_sessions_on_users_id"
+    t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -67,5 +67,5 @@ ActiveRecord::Schema.define(version: 2021_03_18_182524) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "sessions", "groups"
-  add_foreign_key "sessions", "users", column: "users_id"
+  add_foreign_key "sessions", "users"
 end
