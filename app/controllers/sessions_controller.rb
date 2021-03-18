@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
   # POST /sessions
   def create
-    @session = Session.new(session_params)
+    @session = current_user.sessions.build(session_params)
 
     if @session.save
       render json: @session, status: :created, location: @session
@@ -46,6 +46,6 @@ class SessionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def session_params
-      params.require(:session).permit(:name, :start_time, :end_time, :location, posters: [])
+      params.require(:session).permit(:name, :description, :start_time, :end_time, :location, :groupId, poster: )
     end
 end
