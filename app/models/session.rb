@@ -1,5 +1,6 @@
 class Session < ApplicationRecord
   has_one_attached :poster
+  has_one_attached :video
   belongs_to :user
   belongs_to :group
 
@@ -16,5 +17,9 @@ class Session < ApplicationRecord
 
   def poster_url
     Rails.application.routes.url_helpers.url_for(poster) if poster.attached?
+  end
+
+   def video_url
+    Rails.application.routes.url_helpers.url_for(video) if video.attached?
   end
 end
